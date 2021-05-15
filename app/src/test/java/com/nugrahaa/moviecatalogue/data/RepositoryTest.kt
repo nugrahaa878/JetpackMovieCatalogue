@@ -1,10 +1,15 @@
 package com.nugrahaa.moviecatalogue.data
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.paging.DataSource
+import com.bumptech.glide.load.engine.Resource
 import com.nugrahaa.moviecatalogue.data.local.LocalDataSource
+import com.nugrahaa.moviecatalogue.data.local.entity.FavMovieEntity
+import com.nugrahaa.moviecatalogue.data.local.entity.FavTvShowEntity
 import com.nugrahaa.moviecatalogue.data.remote.RemoteDataSource
 import com.nugrahaa.moviecatalogue.utils.DataDummy
 import com.nugrahaa.moviecatalogue.utils.LiveDataTestUtil
+import com.nugrahaa.moviecatalogue.utils.PagedListUtil
 import io.reactivex.rxjava3.core.Flowable
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertNotNull
@@ -13,8 +18,9 @@ import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.verify
+import org.mockito.Mockito.*
+import retrofit2.Response.success
+import kotlin.Result.Companion.success
 
 class RepositoryTest {
 
@@ -22,6 +28,8 @@ class RepositoryTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     private lateinit var repository: FakeRepository
+
+    private val moviesResponse = DataDummy.generateDummyMoviesAPI()
 
     @Mock
     private val remote = Mockito.mock(RemoteDataSource::class.java)
@@ -70,6 +78,26 @@ class RepositoryTest {
         verify(remote).getTVShowById("3")
         assertNotNull(tvShowResponse)
         assertEquals("Ku patah hati", tvShowResponse.originalName)
+    }
+
+    @Test
+    fun getFavMovie() {
+        val dataSourceFactory = mock(DataSource.Factory::class.java) as DataSource.Factory<Int, FavMovieEntity>
+        `when`(local.getAllFavMovie()).thenReturn(dataSourceFactory)
+        repository.getFavMovie()
+
+        val movieEntities = PagedListUtil.mockPagedList(DataDummy.generateDummyMoviesAPI())
+        verify(local).getAllFavMovie()
+        assertNotNull(movieEntities)
+        assertEquals(moviesResponse.size, movieEntities.size)
+    }
+
+    @Test
+    fun getFavTvShow() {
+        val dataSourceFactory = mock(DataSource.Factory::class.java) as DataSource.Factory<Int, FavTvShowEntity>
+        `when`(local.getAllFavTvShow()).thenReturn(dataSourceFactory)
+        repository.getFavTvShow()
+
     }
 
 }

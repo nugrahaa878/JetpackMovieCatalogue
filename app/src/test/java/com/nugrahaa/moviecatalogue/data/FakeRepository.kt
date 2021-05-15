@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.bumptech.glide.load.engine.Resource
 import com.nugrahaa.moviecatalogue.data.local.LocalDataSource
 import com.nugrahaa.moviecatalogue.data.local.entity.FavMovieEntity
 import com.nugrahaa.moviecatalogue.data.local.entity.FavTvShowEntity
