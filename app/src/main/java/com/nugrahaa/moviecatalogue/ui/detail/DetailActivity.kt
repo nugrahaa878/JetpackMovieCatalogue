@@ -41,20 +41,21 @@ class DetailActivity : AppCompatActivity() {
 
         if (getType == "movie") {
             viewModel.getMoviesById(getId.toString())
-            attachObserver(getId.toString())
+            attachObserverMovie(getId.toString())
             supportActionBar?.title = "About Movie"
         } else if (getType == "tvshow") {
             viewModel.getTVShowById(getId.toString())
-            attachObserver(getId.toString())
+            attachObserverTvShow(getId.toString())
             supportActionBar?.title = "About TV Show"
         }
 
         floating_favorite.setOnClickListener {
             try {
-                checkLiked()
                 if (getType == "tvshow") {
+                    checkLiked("tvshow")
                     insertTvShowToDatabase()
                 } else {
+                    checkLiked("movie")
                     insertMovieToDatabase()
                 }
             } catch (e: Exception) {
@@ -64,20 +65,33 @@ class DetailActivity : AppCompatActivity() {
 
     }
 
-    private fun checkLiked() {
+    private fun checkLiked(tipe: String) {
         val db = FavoriteDatabase.getInstance(applicationContext)
         val dao = db.favoriteDao()
 
-        dao.getMovieByTitle(movie.title).observe(this, Observer { liveMovieData ->
-            if (liveMovieData.isNotEmpty() && liveMovieData[0].title != null) {
-                Log.d("FAVORITE", liveMovieData[0].title.toString())
-                isFav = true
-                changeFabIcon(isFav)
-            } else {
-                isFav = false
-                changeFabIcon(isFav)
-            }
-        })
+        if (tipe == "movie") {
+            dao.getMovieByTitle(movie.title).observe(this, Observer { liveMovieData ->
+                if (liveMovieData.isNotEmpty() && liveMovieData[0].title != null) {
+                    Log.d("FAVORITE", liveMovieData[0].title.toString())
+                    isFav = true
+                    changeFabIcon(isFav)
+                } else {
+                    isFav = false
+                    changeFabIcon(isFav)
+                }
+            })
+        } else {
+            dao.getTvShowByName(tvShow.name).observe(this, Observer { liveTvShowdata ->
+                if (liveTvShowdata.isNotEmpty() && liveTvShowdata[0].name != null) {
+                    isFav = true
+                    changeFabIcon(isFav)
+                } else {
+                    isFav = false
+                    changeFabIcon(isFav)
+                }
+
+            })
+        }
     }
 
     private fun changeFabIcon(fav: Boolean) {
@@ -116,15 +130,19 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun attachObserver(id: String) {
+    private fun attachObserverMovie(id: String) {
         viewModel.getMoviesById(id).observe(this, Observer {
             detail_progress.visibility = View.GONE
             addMovieToView(it)
-            checkLiked()
+            checkLiked("movie")
         })
+    }
+
+    private fun attachObserverTvShow(id: String) {
         viewModel.getTVShowById(id).observe(this, Observer {
             detail_progress.visibility = View.GONE
             addTvShowToView(it)
+            checkLiked("tvshow")
         })
     }
 

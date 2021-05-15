@@ -67,9 +67,9 @@ class FavMoviesAdapter(
                     )
                     .into(img_poster_movies)
 
-//                itemView.setOnClickListener {
-//                    callback.onClickGotoDetail(movie)
-//                }
+                itemView.setOnClickListener {
+                    callback.onClickGoToDetail(movie)
+                }
             }
         }
     }

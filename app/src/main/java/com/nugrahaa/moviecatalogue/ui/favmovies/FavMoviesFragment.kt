@@ -1,5 +1,6 @@
 package com.nugrahaa.moviecatalogue.ui.favmovies
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nugrahaa.moviecatalogue.R
 import com.nugrahaa.moviecatalogue.data.local.entity.FavMovieEntity
 import com.nugrahaa.moviecatalogue.data.remote.response.Movie
+import com.nugrahaa.moviecatalogue.ui.detail.DetailActivity
 import com.nugrahaa.moviecatalogue.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_fav_movies.*
 
@@ -57,7 +59,10 @@ class FavMoviesFragment : Fragment(), FavMoviesFragmentCallback {
         rvMovie.adapter = listFavMovieAdapter
     }
 
-    override fun onClickGoToDetail(movie: Movie?) {
-        TODO("Not yet implemented")
+    override fun onClickGoToDetail(movie: FavMovieEntity?) {
+        val mIntent = Intent(context, DetailActivity::class.java)
+        mIntent.putExtra("TYPE", "movie")
+        mIntent.putExtra("ID", movie?.id)
+        startActivity(mIntent)
     }
 }

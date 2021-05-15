@@ -1,5 +1,6 @@
 package com.nugrahaa.moviecatalogue.ui.favtvshows
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,7 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nugrahaa.moviecatalogue.R
+import com.nugrahaa.moviecatalogue.data.local.entity.FavTvShowEntity
 import com.nugrahaa.moviecatalogue.data.remote.response.TVShow
+import com.nugrahaa.moviecatalogue.ui.detail.DetailActivity
 import com.nugrahaa.moviecatalogue.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_fav_tv_show.*
 
@@ -54,7 +57,10 @@ class FavTvShowFragment : Fragment(), FavTvShowFragmentCallback {
         rvTvShow.adapter = listFavTvShowAdapter
     }
 
-    override fun onClickGoToDetail(tvShow: TVShow?) {
-        TODO("Not yet implemented")
+    override fun onClickGoToDetail(tvShow: FavTvShowEntity?) {
+        val mIntent = Intent(context, DetailActivity::class.java)
+        mIntent.putExtra("TYPE", "tvshow")
+        mIntent.putExtra("ID", tvShow?.id)
+        startActivity(mIntent)
     }
 }

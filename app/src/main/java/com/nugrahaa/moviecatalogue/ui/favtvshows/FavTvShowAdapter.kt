@@ -64,6 +64,10 @@ class FavTvShowAdapter(
                             .error(R.drawable.ic_error)
                     )
                     .into(img_poster_tvshow)
+
+                itemView.setOnClickListener {
+                    callback.onClickGoToDetail(tvShow)
+                }
             }
         }
     }
