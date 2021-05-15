@@ -107,4 +107,6 @@ dependencies {
     // pagination
     implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
 
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+
 }
