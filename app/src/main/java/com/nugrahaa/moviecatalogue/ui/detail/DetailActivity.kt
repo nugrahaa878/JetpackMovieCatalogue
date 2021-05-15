@@ -92,10 +92,10 @@ class DetailActivity : AppCompatActivity() {
         try {
             if (isFav) {
                 viewModel.deleteMovieFromFav(movie)
-                Toast.makeText(this, "Success delete from database", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Success delete from Favorite Movie", Toast.LENGTH_SHORT).show()
             } else {
                 viewModel.insertMovieToFav(movie)
-                Toast.makeText(this, "Success insert to database", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Success insert to Favorite Movie", Toast.LENGTH_SHORT).show()
             }
         } catch (e: Exception) {
             Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
@@ -105,10 +105,14 @@ class DetailActivity : AppCompatActivity() {
     private fun insertTvShowToDatabase() {
         try {
             if (isFav) {
-                viewModel.deleteTvShowFromFav(tvShow )
+                viewModel.deleteTvShowFromFav(tvShow)
+                Toast.makeText(this, "Success delete from Favorite TVShow", Toast.LENGTH_SHORT).show()
+            } else {
+                viewModel.insertFavTvShowToFav(tvShow)
+                Toast.makeText(this, "Success insert to Favorite TVShow", Toast.LENGTH_SHORT).show()
             }
         } catch (e: Exception) {
-
+            Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -172,5 +176,7 @@ class DetailActivity : AppCompatActivity() {
                 progressMax = 100f
             }
         }
+
+        this.tvShow = tvShow
     }
 }

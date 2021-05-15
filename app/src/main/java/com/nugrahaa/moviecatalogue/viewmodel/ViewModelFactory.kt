@@ -7,6 +7,7 @@ import com.nugrahaa.moviecatalogue.di.Injection
 import com.nugrahaa.moviecatalogue.data.Repository
 import com.nugrahaa.moviecatalogue.ui.detail.DetailActivityViewModel
 import com.nugrahaa.moviecatalogue.ui.favmovies.FavMoviesViewModel
+import com.nugrahaa.moviecatalogue.ui.favtvshows.FavTvShowViewModel
 import com.nugrahaa.moviecatalogue.ui.movies.MoviesViewModel
 import com.nugrahaa.moviecatalogue.ui.tvshows.TvShowsViewModel
 
@@ -37,6 +38,9 @@ class ViewModelFactory private constructor(private val mRepository: Repository) 
             }
             modelClass.isAssignableFrom(FavMoviesViewModel::class.java) -> {
                 FavMoviesViewModel(mRepository) as T
+            }
+            modelClass.isAssignableFrom(FavTvShowViewModel::class.java) -> {
+                FavTvShowViewModel(mRepository) as T
             }
             else -> throw Throwable("Unknown View Model Class: " + modelClass.name)
         }
