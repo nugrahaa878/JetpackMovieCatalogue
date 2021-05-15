@@ -7,6 +7,7 @@ import com.nugrahaa.moviecatalogue.data.Repository
 import com.nugrahaa.moviecatalogue.data.remote.response.Movie
 import com.nugrahaa.moviecatalogue.data.remote.response.TVShow
 import com.nugrahaa.moviecatalogue.utils.DataDummy
+import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -26,6 +27,7 @@ class DetailActivityViewModelTest {
     val rule = InstantTaskExecutorRule()
 
     private lateinit var viewModel: DetailActivityViewModel
+    private val dummyMovie = DataDummy.generateDummyMoviesAPI()[0]
 
     @Mock
     private lateinit var repository: Repository

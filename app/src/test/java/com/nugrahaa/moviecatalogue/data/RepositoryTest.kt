@@ -16,11 +16,15 @@ import junit.framework.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.*
 import retrofit2.Response.success
 import kotlin.Result.Companion.success
+import junitparams.JUnitParamsRunner;
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
 
 class RepositoryTest {
 
@@ -30,6 +34,7 @@ class RepositoryTest {
     private lateinit var repository: FakeRepository
 
     private val moviesResponse = DataDummy.generateDummyMoviesAPI()
+    private val tvShowResponse = DataDummy.generateDummyTvShowAPI()
 
     @Mock
     private val remote = Mockito.mock(RemoteDataSource::class.java)
@@ -98,6 +103,42 @@ class RepositoryTest {
         `when`(local.getAllFavTvShow()).thenReturn(dataSourceFactory)
         repository.getFavTvShow()
 
+        val tvShowEntities = PagedListUtil.mockPagedList(DataDummy.generateDummyTvShowAPI())
+        verify(local).getAllFavTvShow()
+        assertNotNull(tvShowEntities)
+        assertEquals(tvShowResponse.size, tvShowEntities.size)
+    }
+
+    @Test
+    fun addMovieToFavorite() = runBlocking {
+        val movie = moviesResponse[0]
+        val favMovie = FavMovieEntity(movie?.id, movie?.title, movie?.overview, movie?.originalTitle, movie?.originalLanguage, movie?.voteAverage, movie?.popularity, movie?.voteCount, movie?.releaseDate, movie?.backdropPath, movie?.posterPath, movie?.video, movie?.adult)
+        movie?.let { repository.addMovieToFavorite(it) }
+        verify(local).insertFavMovie(favMovie)
+    }
+
+    @Test
+    fun addTvShowToFavorite() = runBlocking {
+        val tvShow = tvShowResponse[0]
+        val favTvShow = FavTvShowEntity(tvShow?.id, tvShow?.name, tvShow?.overview, tvShow?.originalName, tvShow?.originalLanguage, tvShow?.voteAverage, tvShow?.popularity, tvShow?.voteCount, tvShow?.firstAirDate, tvShow?.backdropPath, tvShow?.posterPath)
+        tvShow?.let { repository.addTVShowToFavorite(it) }
+        verify(local).insertFavTvShow(favTvShow)
+    }
+
+    @Test
+    fun deleteMovieFromFavorite() = runBlocking {
+        val movie = moviesResponse[0]
+        val favMovie = FavMovieEntity(movie?.id, movie?.title, movie?.overview, movie?.originalTitle, movie?.originalLanguage, movie?.voteAverage, movie?.popularity, movie?.voteCount, movie?.releaseDate, movie?.backdropPath, movie?.posterPath, movie?.video, movie?.adult)
+        movie?.let { repository.deleteMovieFromFavorite(it) }
+        verify(local).deleteMovieFromFavorite(favMovie)
+    }
+
+    @Test
+    fun deleteTVShowFromFavorite() = runBlocking {
+        val tvShow = tvShowResponse[0]
+        val favTvShow = FavTvShowEntity(tvShow?.id, tvShow?.name, tvShow?.overview, tvShow?.originalName, tvShow?.originalLanguage, tvShow?.voteAverage, tvShow?.popularity, tvShow?.voteCount, tvShow?.firstAirDate, tvShow?.backdropPath, tvShow?.posterPath)
+        tvShow?.let { repository.deleteTVShowFromFavorite(it) }
+        verify(local).deleteTvShowFromFavorite(favTvShow)
     }
 
 }
