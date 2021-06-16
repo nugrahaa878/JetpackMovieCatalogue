@@ -33,7 +33,7 @@ class HomeActivityTest {
     @Before
     fun setUp() {
         IdlingRegistry.getInstance().register(EspressoIdlingResource.idlingResource)
-        IdlingPolicies.setIdlingResourceTimeout(5, TimeUnit.SECONDS)
+        IdlingPolicies.setIdlingResourceTimeout(10, TimeUnit.SECONDS)
     }
 
     @After
@@ -69,6 +69,48 @@ class HomeActivityTest {
         onView(withText("TV SHOWS")).perform(click())
         onView(withId(R.id.rv_tvshow)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_tvshow)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyTvShow.size))
+    }
+
+    @Test
+    fun addOrDeleteTVShowToFavorite() {
+        onView(withText("TV SHOWS")).perform(click())
+        onView(withId(R.id.rv_tvshow)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(2, click()))
+        onView(withId(R.id.tv_title_detail)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_description_detail)).check(matches(isDisplayed()))
+        onView(withId(R.id.floating_favorite)).perform(click())
+    }
+
+    @Test
+    fun addOrDeleteMovieToFavorite() {
+        onView(withText("MOVIES")).perform(click())
+        onView(withId(R.id.rv_movies)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(2, click()))
+        onView(withId(R.id.tv_title_detail)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_description_detail)).check(matches(isDisplayed()))
+        onView(withId(R.id.floating_favorite)).perform(click())
+    }
+
+    @Test
+    fun addOrDeleteTvShowToFavorite() {
+        onView(withText("TV SHOWS")).perform(click())
+        onView(withId(R.id.rv_tvshow)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(2, click()))
+        onView(withId(R.id.tv_title_detail)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_description_detail)).check(matches(isDisplayed()))
+        onView(withId(R.id.floating_favorite)).perform(click())
+    }
+
+    @Test
+    fun loadMovieFavorite() {
+        onView(withId(R.id.ic_favorite)).perform(click())
+        onView(withId(R.id.fav_rv_movies)).check(matches(isDisplayed()))
+        onView(withId(R.id.fav_rv_movies)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyTvShow.size))
+    }
+
+    @Test
+    fun loadTvShowFavorite() {
+        onView(withId(R.id.ic_favorite)).perform(click())
+        onView(withText("TV SHOWS")).perform(click())
+        onView(withId(R.id.fav_rv_tvshow)).check(matches(isDisplayed()))
+        onView(withId(R.id.fav_rv_tvshow)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyTvShow.size))
     }
 
 }
