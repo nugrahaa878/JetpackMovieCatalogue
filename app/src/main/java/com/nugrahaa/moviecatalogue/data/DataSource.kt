@@ -2,7 +2,6 @@ package com.nugrahaa.moviecatalogue.data
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
-import com.bumptech.glide.load.engine.Resource
 import com.nugrahaa.moviecatalogue.data.local.entity.FavMovieEntity
 import com.nugrahaa.moviecatalogue.data.local.entity.FavTvShowEntity
 import com.nugrahaa.moviecatalogue.data.remote.response.Movie

@@ -8,11 +8,9 @@
     <string name="dummy_tv_desc">Panah adalah menceritakan kembali petualangan dari legendaris DC pahlawan Green Arrow</string>
     <string name="movies">Movies</string>
     <string name="tv_shows">TV Shows</string>
-    <string name="director">Director :</string>
     <string name="hello_movie">HELLO MOVIE</string>
     <string name="empty">Empty</string>
     <string name="poster">Poster</string>
-    <string name="batas">|</string>
     <string name="_72">72%</string>
     <string name="user">USER</string>
     <string name="score">SCORE</string>
@@ -22,7 +20,5 @@
     <string name="home">Home</string>
     <string name="favorite">Favorite</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="favorite_movie_fragment">Favorite Movie Fragment</string>
-    <string name="favorite_tv_show">Favorite TV Show</string>
+    <string name="tombol_favorite">Tombol Favorite</string>
 </resources>

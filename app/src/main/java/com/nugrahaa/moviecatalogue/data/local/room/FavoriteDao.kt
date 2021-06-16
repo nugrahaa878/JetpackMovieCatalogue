@@ -1,6 +1,5 @@
 package com.nugrahaa.moviecatalogue.data.local.room
 
-import android.database.Cursor
 import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.room.*

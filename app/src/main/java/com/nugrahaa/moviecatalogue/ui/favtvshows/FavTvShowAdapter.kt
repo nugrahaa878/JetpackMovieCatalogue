@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.nugrahaa.moviecatalogue.R
 import com.nugrahaa.moviecatalogue.data.local.entity.FavTvShowEntity
-import kotlinx.android.synthetic.main.items_movies.view.*
 import kotlinx.android.synthetic.main.items_tvshow.view.*
 
 class FavTvShowAdapter(

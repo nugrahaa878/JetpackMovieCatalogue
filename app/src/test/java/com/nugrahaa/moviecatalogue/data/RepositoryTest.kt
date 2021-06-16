@@ -2,7 +2,6 @@ package com.nugrahaa.moviecatalogue.data
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.paging.DataSource
-import com.bumptech.glide.load.engine.Resource
 import com.nugrahaa.moviecatalogue.data.local.LocalDataSource
 import com.nugrahaa.moviecatalogue.data.local.entity.FavMovieEntity
 import com.nugrahaa.moviecatalogue.data.local.entity.FavTvShowEntity
@@ -13,18 +12,13 @@ import com.nugrahaa.moviecatalogue.utils.PagedListUtil
 import io.reactivex.rxjava3.core.Flowable
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertNotNull
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.*
-import retrofit2.Response.success
-import kotlin.Result.Companion.success
-import junitparams.JUnitParamsRunner;
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
 
 class RepositoryTest {
 

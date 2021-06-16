@@ -112,6 +112,6 @@ dependencies {
 
     testImplementation "androidx.arch.core:core-testing:2.1.0"
 
-    testCompile 'pl.pragmatists:JUnitParams:1.1.1'
+    testImplementation 'pl.pragmatists:JUnitParams:1.1.1'
 
 }

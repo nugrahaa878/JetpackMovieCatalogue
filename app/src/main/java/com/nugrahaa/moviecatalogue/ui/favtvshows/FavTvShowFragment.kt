@@ -2,17 +2,16 @@ package com.nugrahaa.moviecatalogue.ui.favtvshows
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nugrahaa.moviecatalogue.R
 import com.nugrahaa.moviecatalogue.data.local.entity.FavTvShowEntity
-import com.nugrahaa.moviecatalogue.data.remote.response.TVShow
 import com.nugrahaa.moviecatalogue.ui.detail.DetailActivity
 import com.nugrahaa.moviecatalogue.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_fav_tv_show.*

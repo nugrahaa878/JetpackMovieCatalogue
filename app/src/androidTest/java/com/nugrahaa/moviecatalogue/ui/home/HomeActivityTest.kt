@@ -90,15 +90,6 @@ class HomeActivityTest {
     }
 
     @Test
-    fun addOrDeleteTvShowToFavorite() {
-        onView(withText("TV SHOWS")).perform(click())
-        onView(withId(R.id.rv_tvshow)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(2, click()))
-        onView(withId(R.id.tv_title_detail)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_description_detail)).check(matches(isDisplayed()))
-        onView(withId(R.id.floating_favorite)).perform(click())
-    }
-
-    @Test
     fun loadMovieFavorite() {
         onView(withId(R.id.ic_favorite)).perform(click())
         onView(withId(R.id.fav_rv_movies)).check(matches(isDisplayed()))

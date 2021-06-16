@@ -6,16 +6,14 @@ import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import com.nugrahaa.moviecatalogue.data.Repository
 import com.nugrahaa.moviecatalogue.data.local.entity.FavMovieEntity
-import com.nugrahaa.moviecatalogue.data.local.entity.FavTvShowEntity
-import com.nugrahaa.moviecatalogue.ui.favtvshows.FavTvShowViewModel
-import junit.framework.TestCase
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
-import org.junit.Assert.*
 import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 

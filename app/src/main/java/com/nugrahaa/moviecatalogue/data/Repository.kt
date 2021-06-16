@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.bumptech.glide.load.engine.Resource
 import com.nugrahaa.moviecatalogue.data.local.LocalDataSource
 import com.nugrahaa.moviecatalogue.data.local.entity.FavMovieEntity
 import com.nugrahaa.moviecatalogue.data.local.entity.FavTvShowEntity
@@ -15,7 +14,6 @@ import com.nugrahaa.moviecatalogue.data.remote.response.TVShow
 import com.nugrahaa.moviecatalogue.utils.EspressoIdlingResource
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
-import java.lang.Exception
 
 class Repository private constructor(
     private val remoteDataSource: RemoteDataSource,
