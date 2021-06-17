@@ -14,8 +14,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.verify
+import org.mockito.Mockito.*
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -68,6 +67,48 @@ class DetailActivityViewModelTest {
 
         viewModel.getTVShowById("11").observeForever(observerTv)
         verify(observerTv).onChanged(tvShowDummy.value)
+    }
+
+    @Test
+    fun testInsertMovieToFav() {
+        val movie = MutableLiveData<Movie>()
+        movie.postValue(DataDummy.generateMovieAPI())
+        viewModel.insertMovieToFav(DataDummy.generateMovieAPI())
+        lenient().`when`(repository.getMoviesById("2")).thenReturn(movie)
+        assertNotNull(movie)
+        assertEquals("Si Ujang", movie.value?.title)
+    }
+
+    @Test
+    fun testInsertTvShowToFav() {
+        val tvShow = MutableLiveData<TVShow>()
+        tvShow.postValue(DataDummy.generateTvShowAPI())
+        viewModel.insertFavTvShowToFav(DataDummy.generateTvShowAPI())
+        lenient().`when`(repository.getTVShowById("11")).thenReturn(tvShow)
+        assertNotNull(tvShow)
+        assertEquals("Ku patah hati", tvShow.value?.originalName)
+    }
+
+    @Test
+    fun testDeleteMovieToFav() {
+        val movie = MutableLiveData<Movie>()
+        movie.postValue(DataDummy.generateMovieAPI())
+        viewModel.insertMovieToFav(DataDummy.generateMovieAPI())
+        viewModel.deleteMovieFromFav(DataDummy.generateMovieAPI())
+        lenient().`when`(repository.getMoviesById("2")).thenReturn(movie)
+        assertNotNull(movie)
+        assertEquals("Si Ujang", movie.value?.title)
+    }
+
+    @Test
+    fun testDeleteTvShowToFav() {
+        val tvShow = MutableLiveData<TVShow>()
+        tvShow.postValue(DataDummy.generateTvShowAPI())
+        viewModel.insertFavTvShowToFav(DataDummy.generateTvShowAPI())
+        viewModel.deleteTvShowFromFav(DataDummy.generateTvShowAPI())
+        lenient().`when`(repository.getTVShowById("11")).thenReturn(tvShow)
+        assertNotNull(tvShow)
+        assertEquals("Ku patah hati", tvShow.value?.originalName)
     }
 
 }
