@@ -46,16 +46,30 @@ class HomeActivityTest {
     fun loadDetailTvShows() {
         onView(withText("TV SHOWS")).perform(click())
         onView(withId(R.id.rv_tvshow)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(2, click()))
+        onView(withId(R.id.img_detail)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_title_detail)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_description_detail)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_date_detail)).check(matches(isDisplayed()))
+        onView(withId(R.id.circularProgressBar)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_userscore_detail)).check(matches(isDisplayed()))
+        onView(withId(R.id.textView5)).check(matches(isDisplayed()))
+        onView(withId(R.id.textView6)).check(matches(isDisplayed()))
+        onView(withId(R.id.floating_favorite)).check(matches(isDisplayed()))
     }
 
     @Test
     fun loadDetailMovies() {
         onView(withText("MOVIES")).perform(click())
         onView(withId(R.id.rv_movies)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(2, click()))
+        onView(withId(R.id.img_detail)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_title_detail)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_description_detail)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_date_detail)).check(matches(isDisplayed()))
+        onView(withId(R.id.circularProgressBar)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_userscore_detail)).check(matches(isDisplayed()))
+        onView(withId(R.id.textView5)).check(matches(isDisplayed()))
+        onView(withId(R.id.textView6)).check(matches(isDisplayed()))
+        onView(withId(R.id.floating_favorite)).check(matches(isDisplayed()))
     }
     
     @Test
