@@ -31,8 +31,8 @@ class RepositoryTest {
     private val tvShowResponse = DataDummy.generateDummyTvShowAPI()
 
     @Mock
-    private val remote = Mockito.mock(RemoteDataSource::class.java)
-    private val local = Mockito.mock(LocalDataSource::class.java)
+    private val remote = mock(RemoteDataSource::class.java)
+    private val local = mock(LocalDataSource::class.java)
 
     @Before
     fun setUp() {

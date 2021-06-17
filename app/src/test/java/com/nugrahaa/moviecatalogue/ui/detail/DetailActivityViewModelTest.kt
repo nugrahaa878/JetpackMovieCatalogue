@@ -25,7 +25,6 @@ class DetailActivityViewModelTest {
     val rule = InstantTaskExecutorRule()
 
     private lateinit var viewModel: DetailActivityViewModel
-    private val dummyMovie = DataDummy.generateDummyMoviesAPI()[0]
 
     @Mock
     private lateinit var repository: Repository
